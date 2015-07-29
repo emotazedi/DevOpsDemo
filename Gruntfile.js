@@ -4,6 +4,8 @@ module.exports = function(grunt) {
 
     require('load-grunt-tasks')(grunt);
 
+    grunt.loadNpmTasks('grunt-contrib-coffee');
+
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -24,7 +26,7 @@ module.exports = function(grunt) {
 			}
 		},
 
-		
+
 
 		jshint: {
 			options: {
@@ -146,14 +148,14 @@ module.exports = function(grunt) {
 
 	});
 
-	
+
 	grunt.registerTask('compile-sass', ['sass']);
 	grunt.registerTask('bower-install', ['wiredep']);
-	
+
 	grunt.registerTask('default', ['compile-sass', 'bower-install', 'connect:app', 'watch']);
 	grunt.registerTask('validate-js', ['jshint']);
 	grunt.registerTask('server-dist', ['connect:dist']);
-	
+
 	grunt.registerTask('publish', ['compile-sass', 'clean:dist', 'validate-js', 'useminPrepare', 'copy:dist', 'newer:imagemin', 'concat', 'cssmin', 'uglify', 'usemin']);
 
 };
